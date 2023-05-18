@@ -33,6 +33,7 @@ custom-items-active: true
 #
 clean_water_name: 'Clean water'
 dirty_water_name: 'Dirty water'
+4x_water_value: "4x Water Bottle"
 #
 clean_water_value: 1000
 dirty_water_value: 300

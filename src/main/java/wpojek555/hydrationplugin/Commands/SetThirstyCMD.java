@@ -14,7 +14,7 @@ import wpojek555.hydrationplugin.utilities.PlayerUtility;
 public class SetThirstyCMD implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        int amount;
+        double amount;
         Player target;
         if (commandSender instanceof Player) {
             Player player = (Player)commandSender;
@@ -29,23 +29,26 @@ public class SetThirstyCMD implements CommandExecutor {
                         return false;
                     }
                     try {
-                        amount = Integer.parseInt(strings[1]);
+                        amount = Double.parseDouble(strings[1]);
                     } catch (Exception e) {
-                        player.sendMessage(ChatColor.RED + "Invalid Amount");
+                        player.sendMessage(ChatColor.RED + "Invalid Percent");
                         return false;
                     }
 
-                    if (!target.isOnline() || target == null) {
+                    if (!target.isOnline()) {
                         player.sendMessage(ChatColor.RED + "Invalid Player");
                         return false;
                     }
-                    if (amount > 0 && amount < HydrationPlugin.getInstance().Hydratiion_level_maximum) {
+                    if (amount > 0 && amount < 100) {
                         PlayerData memory = new PlayerData();
-                        memory.setThirsty(amount);
+                        double amount2 = (amount / 100) * HydrationPlugin.getInstance().Hydratiion_level_maximum;
+
+                        int amount3 = (Integer.parseInt(Double.toString(amount2)));
+                        memory.setThirsty(amount3);
                         PlayerUtility.setPlayerData(target, memory);
-                        player.sendMessage(ChatColor.GREEN + "Hydration level set for " + target.getName());
+                        player.sendMessage(ChatColor.GREEN + "Hydration level set for " + target.getName() + "to" + ChatColor.WHITE + "" + ChatColor.BOLD + amount + "%");
                     } else {
-                        player.sendMessage(ChatColor.RED + "Invalid Amount");
+                        player.sendMessage(ChatColor.RED + "Invalid Percent");
                     }
                 }
             } else {

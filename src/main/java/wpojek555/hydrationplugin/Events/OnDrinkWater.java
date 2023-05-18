@@ -44,7 +44,7 @@ public class OnDrinkWater implements Listener {
                     p.addPotionEffect((new PotionEffect(PotionEffectType.CONFUSION, 400, 1, true, true, true )));
                 }
             } else {
-                // Jeśli wtyczka nie obsługuje przedmiotów, dodaj poziom pragnienia dla czystej wody
+                // Jeśli plugin nie obsługuje przedmiotów, dodaj poziom pragnienia dla czystej wody
                 count = PlayerUtility.getPlayerData(p).getThirsty() + HydrationPlugin.getInstance().clean_water_level;
             }
 

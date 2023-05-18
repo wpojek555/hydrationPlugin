@@ -40,6 +40,7 @@ public final class HydrationPlugin extends JavaPlugin {
     public String clean_water_name;
     public int dirty_water_level;
     public String dirty_water_name;
+    public String bidon_water_name;
     public boolean bed_damage_bool;
     public int bed_damage_value;
     public boolean items_enabled;
@@ -60,15 +61,20 @@ public final class HydrationPlugin extends JavaPlugin {
         cfgSetup();
         printDrop();
         ItemManager.init();
-        FurnaceRecipe clearWaterRecipe = new FurnaceRecipe(new NamespacedKey(this, "clearwater"), ItemManager.clearWater, Material.POTION, 1f, 100);
-        Bukkit.addRecipe(clearWaterRecipe);
+        if(items_enabled){
+            FurnaceRecipe clearWaterRecipe = new FurnaceRecipe(new NamespacedKey(this, "clearwater"), ItemManager.clearWater, Material.POTION, 1f, 100);
 
-        ShapelessRecipe recipe = new ShapelessRecipe(ItemManager.BidonItem);
-        recipe.addIngredient(ItemManager.clearWater.getData());
-        recipe.addIngredient(ItemManager.clearWater.getData());
-        recipe.addIngredient(ItemManager.clearWater.getData());
-        recipe.addIngredient(ItemManager.clearWater.getData());
-        Bukkit.addRecipe(recipe);
+            Bukkit.addRecipe(clearWaterRecipe);
+            ShapelessRecipe recipe = new ShapelessRecipe(ItemManager.BidonItem);
+            recipe.addIngredient(ItemManager.clearWater.getData());
+            recipe.addIngredient(ItemManager.clearWater.getData());
+            recipe.addIngredient(ItemManager.clearWater.getData());
+            recipe.addIngredient(ItemManager.clearWater.getData());
+            Bukkit.addRecipe(recipe);
+
+        }
+
+
 
         getServer().getPluginManager().registerEvents(new OnBedLeave(), this);
         getServer().getPluginManager().registerEvents(new OnDeath(), this);
@@ -139,9 +145,11 @@ public final class HydrationPlugin extends JavaPlugin {
         clean_water_level = getConfig().getInt("clean_water_value");
         dirty_water_name = getConfig().getString("dirty_water_name");
         dirty_water_level = getConfig().getInt("dirty_water_value");
+        bidon_water_name = getConfig().getString("4x_water_value");
         bed_damage_bool = getConfig().getBoolean("bed_damage");
         bed_damage_value = getConfig().getInt("bed_damage_value");
         death_message = getConfig().getString("death_message");
+
     }
 
     public void PlayerBossBarLoaderIfReloaded() {
