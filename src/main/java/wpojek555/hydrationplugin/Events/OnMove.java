@@ -2,6 +2,7 @@ package wpojek555.hydrationplugin.Events;
 
 import org.bukkit.*;
 import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,6 +24,7 @@ import static org.bukkit.entity.Pose.SWIMMING;
 public class OnMove implements Listener {
     public static boolean died = false;
     static boolean wasThirsty = false;
+    boolean OnePick = false;
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
         Player p = e.getPlayer();
@@ -51,7 +53,7 @@ public class OnMove implements Listener {
 
 //        if (p.getGameMode() == GameMode.SURVIVAL){
         int count = PlayerUtility.getPlayerData(p).getThirsty();
-
+if (p.getGameMode() == GameMode.SURVIVAL){
         if(p.getWorld().getEnvironment() == World.Environment.NETHER) {
 
             if(p.isSneaking()) {
@@ -81,7 +83,15 @@ public class OnMove implements Listener {
         }
 
         PlayerUtility.setPlayerData(p, memory);
+        if(OnePick){
+            BossBar bossBar2 = Bukkit.createBossBar(HydrationPlugin.getInstance().bossBar_Tittle, BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color), BarStyle.valueOf(HydrationPlugin.getInstance().bossBar_Style));
+            bossBar2.addPlayer(p);
+            HydrationPlugin.addBossBar(p, bossBar2);
+            OnePick = false;
+
+        }
         BossBar bossBar = HydrationPlugin.getBossBar(p);
+
         if (bossBar != null) {
             float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / HydrationPlugin.getInstance().Hydratiion_level_maximum;
             bossBar.setProgress(thirstyPercentage);
@@ -127,7 +137,13 @@ public class OnMove implements Listener {
                 wasThirsty = false;
             }
 
-        }
+        }} else {
+    BossBar bossBar = HydrationPlugin.getBossBar(p);
+    bossBar.removePlayer(p);
+    HydrationPlugin.removeBossBar(p);
+    OnePick = true;
+
+}
     }
 
 }
