@@ -9,6 +9,7 @@ The Hydration Plugin is a Minecraft plugin that introduces a thirst mechanic to 
 - Drinking water: Players can consume water to replenish their hydration level.
 - Different water types: The plugin supports clean water, dirty water, and special potions with hydration effects.
 - Customizable settings: You can configure the maximum hydration level, water effects, and more.
+- The decrease in hydration level is dependent on the current world like nether.
 
 ## Installation
 
