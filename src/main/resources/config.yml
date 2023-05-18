@@ -1,0 +1,50 @@
+#     _  _ __   __ ___   ___  ___  _____  ___   ___   _  _        ___  _     _   _   ___  ___  _  _
+#    | || |\ \ / /|   \ | _ \/   \|_   _||_ _| / _ \ | \| |      | _ \| |   | | | | / __||_ _|| \| |
+#    | __ | \   / | |) ||   /| - |  | |   | | | (_) || .  |      |  _/| |__ | |_| || (_ | | | | .  |
+#    |_||_|  |_|  |___/ |_|_\|_|_|  |_|  |___| \___/ |_|\_|      |_|  |____| \___/  \___||___||_|\_|
+#
+#       ___  _  _       __      __ ___   ___      _  ___  _  __  ___   ___   ___
+#      | _ )| || |      \ \    / /| _ \ / _ \  _ | || __|| |/ / | __| | __| | __|
+#      | _ \ \_. |       \ \/\/ / |  _/| (_) || || || _| |   <  |__ \ |__ \ |__ \
+#      |___/ |__/         \_/\_/  |_|   \___/  \__/ |___||_|\_\ |___/ |___/ |___/
+#
+
+# ======== BOSSBAR options ========
+bossbar-Tittle: 'Hydration level'
+# supported colors : BLUE,RED,GREEN,PINK,PURPLE,WHITE,YELLOW
+bossbar-color: 'BLUE'
+bossbar-color-medium: 'YELLOW'
+bossbar-color-low: 'RED'
+# supported styles : SEGMENTED_6,SEGMENTED_10,SEGMENTED_12,SEGMENTED_20, SOLID
+bossbar-style: 'SOLID'
+#
+#
+# ======== Hydration options ========
+# You can change it, but I don't recommend
+# (If you would like to slow the decrease of Hydration level you have to increase Hydration-level-max)
+Hydration-level-max: 10000 # default: 10000
+Hydration-level-medium: 1000 # default: 1000
+Hydration-level-min: 500 # default: 500
+#
+#
+# ========= Items options =========
+# if set to false clean_water_value will be used to water
+custom-items-active: true
+#
+clean_water_name: 'Clean water'
+dirty_water_name: 'Dirty water'
+#
+clean_water_value: 1000
+dirty_water_value: 300
+#
+#
+# ========= Bed options =========
+bed_damage: true
+bed_damage_value: 1500
+#
+#
+# ========= Custom messages =========
+# <Player> = name of the player
+death_message: '<Player> &adied of thirst.'
+#
+#

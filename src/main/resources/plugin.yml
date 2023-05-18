@@ -1,0 +1,12 @@
+name: hydrationPlugin
+version: '${project.version}'
+main: wpojek555.hydrationplugin.HydrationPlugin
+api-version: 1.16
+commands:
+  setHydration:
+    description: This command sets the hydration level for specified player
+  hydrationLevel:
+    description: This command gets the amount of level for you
+    aliases:
+      - hydration
+      - hL
