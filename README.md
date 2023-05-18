@@ -29,11 +29,9 @@ The Hydration Plugin is a Minecraft plugin that introduces a thirst mechanic to 
 
 ### Clean Water Recipe
 
-To craft clean water, you need the following ingredients:
+To craft clean water, you need to smelt a Dirty water like this:
 
-- Water Bucket
 
-Place the Water Bucket in any crafting grid to obtain clean water.
 
 ### 4x Clean Water Recipe
 
