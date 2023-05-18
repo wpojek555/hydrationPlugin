@@ -35,11 +35,10 @@ To craft clean water, you need to smelt a Dirty water like this:
 
 ### 4x Clean Water Recipe
 
-To craft 4x clean water, you need the following ingredients:
+To craft 4x clean water, you need the follow this:
 
-- 4x Water Bottle
+![Smelting recipe](Images/HydrationPluginTuto4xCrafting.png)
 
-Place the 4 Water Bottles in any crafting grid to obtain 4x clean water.
 
 ## Configuration
 
