@@ -2,6 +2,7 @@ package wpojek555.hydrationplugin.Events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -62,6 +63,8 @@ public class OnDrinkWater implements Listener {
                 float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / HydrationPlugin.getInstance().Hydratiion_level_maximum;
                 bossBar.setProgress(thirstyPercentage);
             }
+            p.getInventory().remove(item);
+            p.playSound(p.getLocation(), Sound.BLOCK_GRASS_BREAK, 1, 1);
         }
     }
 }

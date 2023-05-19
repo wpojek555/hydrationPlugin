@@ -17,9 +17,9 @@ public class GetLevelCMD implements CommandExecutor {
                 float Amount = PlayerUtility.getPlayerData(player).getThirsty();
                 float result = (Amount / (float) (HydrationPlugin.getInstance().Hydratiion_level_maximum)) * 100;
                 int result2 = Math.round(result);
-                player.sendMessage("Level nawodnienia wynosi: " + result2 + "%");
+                player.sendMessage("Hydration level: " + result2 + "%");
             } catch (Exception e) {
-                player.sendMessage(ChatColor.RED + "Cos poszło nie tak");
+                player.sendMessage(ChatColor.RED + "Something went wrong!");
             }
         }
         return false;

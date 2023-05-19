@@ -8,6 +8,7 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -15,8 +16,10 @@ import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
 import wpojek555.hydrationplugin.Commands.GetLevelCMD;
+import wpojek555.hydrationplugin.Commands.Hydration;
 import wpojek555.hydrationplugin.Commands.SetThirstyCMD;
 import wpojek555.hydrationplugin.Events.*;
+import wpojek555.hydrationplugin.TabCompleter.HydrationCompleter;
 import wpojek555.hydrationplugin.data.PlayerData;
 import wpojek555.hydrationplugin.items.ItemManager;
 import wpojek555.hydrationplugin.utilities.PlayerUtility;
@@ -82,8 +85,10 @@ public final class HydrationPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnMove(), this);
         getServer().getPluginManager().registerEvents(new OnFillBottle(), this);
         getServer().getPluginManager().registerEvents(new General(), this);
-        getCommand("setHydration").setExecutor(new SetThirstyCMD());
+//        getCommand("setHydration").setExecutor(new SetThirstyCMD());
         getCommand("hydrationLevel").setExecutor(new GetLevelCMD());
+        getCommand("hydration").setExecutor(new Hydration());
+        getCommand("hydration").setTabCompleter(new HydrationCompleter());
         PlayerBossBarLoaderIfReloaded();
     }
 
@@ -131,6 +136,28 @@ public final class HydrationPlugin extends JavaPlugin {
         // Konfiguracja pluginu
 
         getConfig().options().copyDefaults();
+
+        saveDefaultConfig();
+        bossBar_Tittle = getConfig().getString("bossbar-Tittle");
+        bossBar_Color = getConfig().getString("bossbar-color");
+        bossBar_Color_medium = getConfig().getString("bossbar-color-medium");
+        bossBar_Color_low = getConfig().getString("bossbar-color-low");
+        bossBar_Style = getConfig().getString("bossbar-style");
+        Hydratiion_level_maximum = getConfig().getInt("Hydration-level-max");
+        Hydratiion_level_medium = getConfig().getInt("Hydration-level-medium");
+        Hydratiion_level_min = getConfig().getInt("Hydration-level-min");
+        items_enabled = getConfig().getBoolean("custom-items-active");
+        clean_water_name = getConfig().getString("clean_water_name");
+        clean_water_level = getConfig().getInt("clean_water_value");
+        dirty_water_name = getConfig().getString("dirty_water_name");
+        dirty_water_level = getConfig().getInt("dirty_water_value");
+        bidon_water_name = getConfig().getString("4x_water_value");
+        bed_damage_bool = getConfig().getBoolean("bed_damage");
+        bed_damage_value = getConfig().getInt("bed_damage_value");
+        death_message = getConfig().getString("death_message");        // Konfiguracja pluginu
+
+        getConfig().options().copyDefaults();
+
         saveDefaultConfig();
         bossBar_Tittle = getConfig().getString("bossbar-Tittle");
         bossBar_Color = getConfig().getString("bossbar-color");
@@ -149,6 +176,7 @@ public final class HydrationPlugin extends JavaPlugin {
         bed_damage_bool = getConfig().getBoolean("bed_damage");
         bed_damage_value = getConfig().getInt("bed_damage_value");
         death_message = getConfig().getString("death_message");
+
 
     }
 
@@ -193,5 +221,29 @@ public final class HydrationPlugin extends JavaPlugin {
         System.out.println("|   ##########  ");
         System.out.println("|     ######    ");
         System.out.println("|              ");
+
     }
+    public void reloadConfigurationFile() {
+        reloadConfig();
+        // Konfiguracja pluginu
+
+        getConfig().options().copyDefaults();
+
+        saveDefaultConfig();
+        bossBar_Tittle = getConfig().getString("bossbar-Tittle");
+        bossBar_Color = getConfig().getString("bossbar-color");
+        bossBar_Color_medium = getConfig().getString("bossbar-color-medium");
+        bossBar_Color_low = getConfig().getString("bossbar-color-low");
+        bossBar_Style = getConfig().getString("bossbar-style");
+        Hydratiion_level_maximum = getConfig().getInt("Hydration-level-max");
+        Hydratiion_level_medium = getConfig().getInt("Hydration-level-medium");
+        Hydratiion_level_min = getConfig().getInt("Hydration-level-min");
+        items_enabled = getConfig().getBoolean("custom-items-active");
+        clean_water_level = getConfig().getInt("clean_water_value");
+        dirty_water_level = getConfig().getInt("dirty_water_value");
+        bed_damage_bool = getConfig().getBoolean("bed_damage");
+        bed_damage_value = getConfig().getInt("bed_damage_value");
+        death_message = getConfig().getString("death_message");
+    }
+
 }

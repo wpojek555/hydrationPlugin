@@ -84,7 +84,8 @@ if (p.getGameMode() == GameMode.SURVIVAL){
 
         PlayerUtility.setPlayerData(p, memory);
         if(OnePick){
-            BossBar bossBar2 = Bukkit.createBossBar(HydrationPlugin.getInstance().bossBar_Tittle, BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color), BarStyle.valueOf(HydrationPlugin.getInstance().bossBar_Style));
+            BossBar bossBar2 = HydrationPlugin.getBossBar(p);
+
             bossBar2.addPlayer(p);
             HydrationPlugin.addBossBar(p, bossBar2);
             OnePick = false;
@@ -136,12 +137,14 @@ if (p.getGameMode() == GameMode.SURVIVAL){
                 p.removePotionEffect(PotionEffectType.CONFUSION);
                 wasThirsty = false;
             }
+            bossBar.setTitle(HydrationPlugin.getInstance().bossBar_Tittle);
+            bossBar.setStyle(BarStyle.valueOf(HydrationPlugin.getInstance().bossBar_Style));
 
         }} else {
     BossBar bossBar = HydrationPlugin.getBossBar(p);
     bossBar.removePlayer(p);
-    HydrationPlugin.removeBossBar(p);
     OnePick = true;
+
 
 }
     }
