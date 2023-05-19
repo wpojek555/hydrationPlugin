@@ -13,7 +13,7 @@ The Hydration Plugin is a Minecraft plugin that introduces a thirst mechanic to 
 
 ## Installation
 
-1. Download the Hydration Plugin JAR file from the [releases](https://github.com/your-username/hydration-plugin/releases) page.
+1. Download the Hydration Plugin JAR file from the [releases](https://www.spigotmc.org/resources/hydration.109923) page.
 2. Place the JAR file in the `plugins` folder of your Minecraft server.
 3. Restart the server to load the plugin.
 
