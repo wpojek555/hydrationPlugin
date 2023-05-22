@@ -30,7 +30,9 @@ public class OnMove implements Listener {
         Player p = e.getPlayer();
 
         PlayerData memory = new PlayerData();
-
+/*        if (HydrationPlugin.getInstance().isDroughtPeriod(p.getWorld())) {
+            p.sendMessage(ChatColor.GREEN + "Susza");
+        }*/
 
 
         if(HydrationPlugin.getInstance().items_enabled) {

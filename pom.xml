@@ -6,7 +6,7 @@
 
     <groupId>wpojek555</groupId>
     <artifactId>hydrationPlugin</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
 
     <name>hydrationPlugin</name>

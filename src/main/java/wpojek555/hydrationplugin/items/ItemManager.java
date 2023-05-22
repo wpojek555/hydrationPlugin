@@ -24,7 +24,6 @@ public class ItemManager {
     public static void init(){
         createClearWater();
         createDirtyWater();
-        createBidon();
     }
     public static void createClearWater() {
         ItemStack item = new ItemStack(Material.POTION, 1);
@@ -49,20 +48,5 @@ public class ItemManager {
 //        meta.setLore(Arrays.asList(ChatColor.GRAY + "Brudna i słona woda"));
         item.setItemMeta(meta);
         DirtyWater = item;
-    }
-    public static void createBidon() {
-        ItemStack item = new ItemStack(Material.POTION, 1);
-        ItemMeta meta = item.getItemMeta();
-        PotionMeta pmeta = (PotionMeta) meta;
-        PotionData pdata = new PotionData(PotionType.WATER);
-
-        pmeta.setBasePotionData(pdata);
-        pmeta.setColor(Color.GREEN);
-        meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + HydrationPlugin.getInstance().bidon_water_name);
-        meta.addEnchant(Enchantment.LUCK, 1, false);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-//        meta.setLore(Arrays.asList(ChatColor.GRAY + "Brudna i słona woda"));
-        item.setItemMeta(meta);
-        BidonItem = item;
     }
 }
