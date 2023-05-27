@@ -56,17 +56,7 @@ public class OnMove implements Listener {
 //        if (p.getGameMode() == GameMode.SURVIVAL){
         int count = PlayerUtility.getPlayerData(p).getThirsty();
 if (p.getGameMode() == GameMode.SURVIVAL){
-        if(p.getWorld().getEnvironment() == World.Environment.NETHER) {
 
-            if(p.isSneaking()) {
-
-            } else if (p.isSprinting()) {
-
-                count = PlayerUtility.getPlayerData(p).getThirsty() - 3;
-            } else {
-                count = PlayerUtility.getPlayerData(p).getThirsty() - 1;
-            }
-        }
         if(p.isSneaking()) {
 
         } else if (p.isSprinting()) {
@@ -95,6 +85,17 @@ if (p.getGameMode() == GameMode.SURVIVAL){
         }
         BossBar bossBar = HydrationPlugin.getBossBar(p);
 
+    if((p.getWorld().getEnvironment() == World.Environment.NETHER) || (HydrationPlugin.getInstance().isDroughtActive)) {
+
+        if(p.isSneaking()) {
+
+        } else if (p.isSprinting()) {
+
+            count = PlayerUtility.getPlayerData(p).getThirsty() - 3;
+        } else {
+            count = PlayerUtility.getPlayerData(p).getThirsty() - 1;
+        }
+    }
         if (bossBar != null) {
             float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / HydrationPlugin.getInstance().Hydratiion_level_maximum;
             bossBar.setProgress(thirstyPercentage);
@@ -129,8 +130,11 @@ if (p.getGameMode() == GameMode.SURVIVAL){
             PlayerUtility.setPlayerData(p, memory);
             bossBar.setColor(BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color));
         }}} else {
-
-            bossBar.setColor(BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color));
+            if ((p.getWorld().getEnvironment() == World.Environment.NETHER) || (HydrationPlugin.getInstance().isDroughtActive)){
+                bossBar.setColor(BarColor.WHITE);
+            } else {
+                bossBar.setColor(BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color));
+            }
             if(wasThirsty) {
                 p.removePotionEffect(PotionEffectType.WEAKNESS);
                 p.removePotionEffect(PotionEffectType.SLOW);

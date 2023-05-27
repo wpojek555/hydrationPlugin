@@ -35,7 +35,7 @@ import java.util.Random;
 
 public final class HydrationPlugin extends JavaPlugin {
     private Random random;
-    private boolean isDroughtActive;
+    public boolean isDroughtActive;
     private BukkitTask droughtTask;
 
     public String bossBar_Tittle;
@@ -55,6 +55,10 @@ public final class HydrationPlugin extends JavaPlugin {
     public int bed_damage_value;
     public boolean items_enabled;
     public String death_message;
+    public String Drought_period_start_message;
+    public String Drought_period_end_message;
+    public String Drought_ActionBar_message;
+    public boolean Drought_period_enabled;
     private static HydrationPlugin instance;
     private Map<Player, BossBar> bossBars;
 
@@ -73,7 +77,13 @@ public final class HydrationPlugin extends JavaPlugin {
         ItemManager.init();
         random = new Random();
         isDroughtActive = false;
-        scheduleDrought();
+        if(Drought_period_enabled){
+            scheduleDrought();
+            System.out.println("Drought period enabled");
+        } else {
+            System.out.println("Drought period disabled");
+        }
+
         if(items_enabled){
             FurnaceRecipe clearWaterRecipe = new FurnaceRecipe(new NamespacedKey(this, "clearwater"), ItemManager.clearWater, Material.POTION, 1f, 100);
 
@@ -160,6 +170,10 @@ public final class HydrationPlugin extends JavaPlugin {
         bed_damage_bool = getConfig().getBoolean("bed_damage");
         bed_damage_value = getConfig().getInt("bed_damage_value");
         death_message = getConfig().getString("death_message");
+        Drought_period_start_message = getConfig().getString("Drought_period_start_message");
+        Drought_period_end_message = getConfig().getString("Drought_period_end_message");
+        Drought_ActionBar_message = getConfig().getString("Drought_action_bar_message");
+        Drought_period_enabled = getConfig().getBoolean("Drought_period_enabled");
 
 
     }
@@ -228,6 +242,9 @@ public final class HydrationPlugin extends JavaPlugin {
         bed_damage_bool = getConfig().getBoolean("bed_damage");
         bed_damage_value = getConfig().getInt("bed_damage_value");
         death_message = getConfig().getString("death_message");
+        Drought_period_start_message = getConfig().getString("Drought_period_start_message");
+        Drought_period_end_message = getConfig().getString("Drought_period_end_message");
+        Drought_ActionBar_message = getConfig().getString("Drought_action_bar_message");
     }
     private void scheduleDrought() {
         int delay = getRandomDelay();
@@ -246,9 +263,9 @@ public final class HydrationPlugin extends JavaPlugin {
             world.setStorm(false);
             world.setThundering(false);
         }
-        Bukkit.broadcastMessage("Susza rozpoczęta!");
+        Bukkit.broadcastMessage(Drought_period_start_message.replace("&", "§"));
         Bukkit.getScheduler().runTaskTimer(this, () -> {
-            String actionBarMessage = ChatColor.GOLD + "" + ChatColor.BOLD + "Susza";
+            String actionBarMessage = Drought_ActionBar_message.replace("&", "§");;
             sendActionBarToAllPlayers(actionBarMessage, 30); // Wyświetl przez 5 sekund
         }, 0, 100);
     }
@@ -260,7 +277,7 @@ public final class HydrationPlugin extends JavaPlugin {
             world.setStorm(true);
             world.setThundering(true);
         }
-        Bukkit.broadcastMessage("Susza zakończona!");
+        Bukkit.broadcastMessage(Drought_period_end_message.replace("&", "§"));
         scheduleDrought();
     }
 

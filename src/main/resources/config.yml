@@ -43,8 +43,16 @@ bed_damage: true
 bed_damage_value: 1500
 #
 #
+# ========= Drought options =========
+Drought_period_enabled: true
+#
+#
 # ========= Custom messages =========
 # <Player> = name of the player
 death_message: '<Player> &adied of thirst.'
+Drought_period_start_message: '&6Drought period started!!!'
+Drought_period_end_message: '&aDrought period ends!!!'
+Drought_ActionBar_message: '&6&lDrought'
 #
 #
+
