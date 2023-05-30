@@ -24,6 +24,7 @@ import wpojek555.hydrationplugin.Events.*;
 import wpojek555.hydrationplugin.TabCompleter.HydrationCompleter;
 import wpojek555.hydrationplugin.data.PlayerData;
 import wpojek555.hydrationplugin.items.ItemManager;
+import wpojek555.hydrationplugin.placeholderAPiExpansion.spigotExpansion;
 import wpojek555.hydrationplugin.utilities.PlayerUtility;
 
 import java.io.File;
@@ -61,6 +62,7 @@ public final class HydrationPlugin extends JavaPlugin {
     public boolean Drought_period_enabled;
     private static HydrationPlugin instance;
     private Map<Player, BossBar> bossBars;
+    public Map<Player, Integer> HydrationLevel = new HashMap<>();
 
     public static HydrationPlugin getInstance() {
         return instance;
@@ -104,6 +106,11 @@ public final class HydrationPlugin extends JavaPlugin {
         getCommand("hydration").setExecutor(new Hydration());
         getCommand("hydration").setTabCompleter(new HydrationCompleter());
         PlayerBossBarLoaderIfReloaded();
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new spigotExpansion(this).register();
+        } else {
+            System.out.println("You don't have PlaceHolderAPI installed");
+        }
     }
 
     @Override
@@ -172,7 +179,7 @@ public final class HydrationPlugin extends JavaPlugin {
         death_message = getConfig().getString("death_message");
         Drought_period_start_message = getConfig().getString("Drought_period_start_message");
         Drought_period_end_message = getConfig().getString("Drought_period_end_message");
-        Drought_ActionBar_message = getConfig().getString("Drought_action_bar_message");
+        Drought_ActionBar_message = getConfig().getString("Drought_ActionBar_message");
         Drought_period_enabled = getConfig().getBoolean("Drought_period_enabled");
 
 
@@ -244,7 +251,7 @@ public final class HydrationPlugin extends JavaPlugin {
         death_message = getConfig().getString("death_message");
         Drought_period_start_message = getConfig().getString("Drought_period_start_message");
         Drought_period_end_message = getConfig().getString("Drought_period_end_message");
-        Drought_ActionBar_message = getConfig().getString("Drought_action_bar_message");
+        Drought_ActionBar_message = getConfig().getString("Drought_ActionBar_message");
     }
     private void scheduleDrought() {
         int delay = getRandomDelay();

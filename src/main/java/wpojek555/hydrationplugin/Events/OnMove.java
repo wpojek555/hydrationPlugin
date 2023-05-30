@@ -22,6 +22,7 @@ import wpojek555.hydrationplugin.utilities.PlayerUtility;
 import static org.bukkit.entity.Pose.SWIMMING;
 
 public class OnMove implements Listener {
+
     public static boolean died = false;
     static boolean wasThirsty = false;
     boolean OnePick = false;
@@ -153,7 +154,12 @@ if (p.getGameMode() == GameMode.SURVIVAL){
 
 
 }
+        float Amount = PlayerUtility.getPlayerData(p).getThirsty();
+        float result = (Amount / (float) (HydrationPlugin.getInstance().Hydratiion_level_maximum)) * 100;
+        int result2 = Math.round(result);
+        HydrationPlugin.getInstance().HydrationLevel.put(p, result2);
     }
+
 
 }
 

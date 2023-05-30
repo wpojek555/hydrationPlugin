@@ -30,6 +30,7 @@ public class ItemManager {
         ItemMeta meta = item.getItemMeta();
         PotionMeta pmeta = (PotionMeta) meta;
         PotionData pdata = new PotionData(PotionType.WATER);
+        pmeta.setColor(Color.AQUA);
         pmeta.setBasePotionData(pdata);
         meta.setDisplayName(ChatColor.AQUA + "" + ChatColor.BOLD + HydrationPlugin.getInstance().clean_water_name);
         meta.addEnchant(Enchantment.LUCK, 1, false);
