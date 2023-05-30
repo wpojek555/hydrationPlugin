@@ -55,4 +55,10 @@ Drought_period_end_message: '&aDrought period ends!!!'
 Drought_ActionBar_message: '&6&lDrought'
 #
 #
+# ========= Ignored worlds =========
+# put here name of the worlds that you want to be ignored by plugin
+IgnoredWorlds:
+  - "Example_world_name"
+  - "Example_Nether_world_name"
+  - "Example_The_end_world_name"
 

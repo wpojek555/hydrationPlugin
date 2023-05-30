@@ -28,7 +28,13 @@ public class OnMove implements Listener {
     boolean OnePick = false;
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
+
         Player p = e.getPlayer();
+        if (HydrationPlugin.getInstance().getConfig().getStringList("IgnoredWorlds").contains(p.getWorld().getName())) {
+            HydrationPlugin.getBossBar(p).removePlayer(p);
+            OnePick = true;
+            return;
+        }
 
         PlayerData memory = new PlayerData();
 /*        if (HydrationPlugin.getInstance().isDroughtPeriod(p.getWorld())) {
