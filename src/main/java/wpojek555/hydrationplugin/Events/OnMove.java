@@ -1,6 +1,7 @@
 package wpojek555.hydrationplugin.Events;
 
 import org.bukkit.*;
+import org.bukkit.block.Biome;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
@@ -26,6 +27,7 @@ public class OnMove implements Listener {
     public static boolean died = false;
     static boolean wasThirsty = false;
     boolean OnePick = false;
+    String[] hotBiomes = {"DESERT", "BEACH"};
     @EventHandler
     public void onMove(PlayerMoveEvent e) {
 
@@ -91,8 +93,8 @@ if (p.getGameMode() == GameMode.SURVIVAL){
 
         }
         BossBar bossBar = HydrationPlugin.getBossBar(p);
-
-    if((p.getWorld().getEnvironment() == World.Environment.NETHER) || (HydrationPlugin.getInstance().isDroughtActive)) {
+        Location location = p.getLocation();
+    if((p.getWorld().getEnvironment() == World.Environment.NETHER) || (HydrationPlugin.getInstance().isDroughtActive) || (p.getWorld().getBiome(location.getBlockX(), location.getBlockY(), location.getBlockZ()).equals(Biome.DESERT))) {
 
         if(p.isSneaking()) {
 
