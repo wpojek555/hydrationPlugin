@@ -2,7 +2,7 @@ name: hydrationPlugin
 version: '${project.version}'
 main: wpojek555.hydrationplugin.HydrationPlugin
 api-version: 1.16
-#softdepend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI]
 commands:
   hydrationLevel:
     description: This command gets the amount of level for you

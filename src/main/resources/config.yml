@@ -10,6 +10,8 @@
 #
 
 # ======== BOSSBAR options ========
+bossbar-active: true
+#
 bossbar-Tittle: 'Hydration level'
 # supported colors : BLUE,RED,GREEN,PINK,PURPLE,WHITE,YELLOW
 bossbar-color: 'BLUE'

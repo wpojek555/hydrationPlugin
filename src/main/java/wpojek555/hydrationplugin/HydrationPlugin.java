@@ -39,6 +39,7 @@ public final class HydrationPlugin extends JavaPlugin {
     public boolean isDroughtActive;
     private BukkitTask droughtTask;
 
+    public boolean bossbar_active;
     public String bossBar_Tittle;
     public String bossBar_Style;
     public String bossBar_Color;
@@ -160,6 +161,7 @@ public final class HydrationPlugin extends JavaPlugin {
         getConfig().options().copyDefaults();
 
         saveDefaultConfig();
+        bossbar_active  = getConfig().getBoolean("bossbar-active");
         bossBar_Tittle = getConfig().getString("bossbar-Tittle");
         bossBar_Color = getConfig().getString("bossbar-color");
         bossBar_Color_medium = getConfig().getString("bossbar-color-medium");
@@ -202,11 +204,14 @@ public final class HydrationPlugin extends JavaPlugin {
             PlayerUtility.setPlayerData(player, playerData);
             Player p;
             p = player;
-            BossBar bossBar = Bukkit.createBossBar(bossBar_Tittle, BarColor.valueOf(bossBar_Color), BarStyle.valueOf(bossBar_Style));
-            bossBar.addPlayer(p);
-            float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / Hydratiion_level_maximum;
-            bossBar.setProgress(thirstyPercentage);
-            HydrationPlugin.addBossBar(p, bossBar);
+            if(getConfig().getBoolean("bossbar-active")){
+
+                BossBar bossBar = Bukkit.createBossBar(bossBar_Tittle, BarColor.valueOf(bossBar_Color), BarStyle.valueOf(bossBar_Style));
+                bossBar.addPlayer(p);
+                float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / Hydratiion_level_maximum;
+                bossBar.setProgress(thirstyPercentage);
+                HydrationPlugin.addBossBar(p, bossBar);
+            }
         }
     }
 

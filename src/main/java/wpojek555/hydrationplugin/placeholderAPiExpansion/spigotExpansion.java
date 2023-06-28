@@ -26,7 +26,7 @@ public class spigotExpansion extends PlaceholderExpansion {
 
     @Override
     public @org.jetbrains.annotations.NotNull String getVersion() {
-        return "1.5";
+        return "1.6";
     }
 
 

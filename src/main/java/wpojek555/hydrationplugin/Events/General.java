@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+
 import wpojek555.hydrationplugin.HydrationPlugin;
 import wpojek555.hydrationplugin.data.PlayerData;
 import wpojek555.hydrationplugin.utilities.PlayerUtility;
@@ -38,11 +39,14 @@ public class General implements Listener {
 
         PlayerUtility.setPlayerData(e.getPlayer(), playerData);
         Player p = e.getPlayer();
-        BossBar bossBar = Bukkit.createBossBar(HydrationPlugin.getInstance().bossBar_Tittle, BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color), BarStyle.valueOf(HydrationPlugin.getInstance().bossBar_Style));
-        bossBar.addPlayer(p);
-        float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / HydrationPlugin.getInstance().Hydratiion_level_maximum;
-        bossBar.setProgress(thirstyPercentage);
-        HydrationPlugin.addBossBar(p, bossBar);
+        if(HydrationPlugin.getInstance().bossbar_active){
+
+            BossBar bossBar = Bukkit.createBossBar(HydrationPlugin.getInstance().bossBar_Tittle, BarColor.valueOf(HydrationPlugin.getInstance().bossBar_Color), BarStyle.valueOf(HydrationPlugin.getInstance().bossBar_Style));
+            bossBar.addPlayer(p);
+            float thirstyPercentage = (float) PlayerUtility.getPlayerData(p).getThirsty() / HydrationPlugin.getInstance().Hydratiion_level_maximum;
+            bossBar.setProgress(thirstyPercentage);
+            HydrationPlugin.addBossBar(p, bossBar);
+        }
     }
 
     @EventHandler
@@ -56,10 +60,13 @@ public class General implements Listener {
 
         try { cfg.save(f); } catch (IOException err) { err.printStackTrace();}
         PlayerUtility.setPlayerData(e.getPlayer(), null);
-        BossBar bossBar = HydrationPlugin.getBossBar(e.getPlayer());
-        if (bossBar != null) {
-            bossBar.removeAll();
-            HydrationPlugin.removeBossBar(e.getPlayer());
+        if (HydrationPlugin.getInstance().bossbar_active) {
+
+            BossBar bossBar = HydrationPlugin.getBossBar(e.getPlayer());
+            if (bossBar != null) {
+                bossBar.removeAll();
+                HydrationPlugin.removeBossBar(e.getPlayer());
+            }
         }
     }
 }
